@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- /chap2/src/main/java/applicationContext.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="project" class="chap2.Project">
+   <property name="srcdirs">
+   <list>
+         <value>src/</value>
+         <value>srcResource/</value>
+   </list>
+   </property>
+   <property name="bindir" value="bin/" />
+   <property name="classpath" value="src/" />
+   <property name="b"><ref bean="runner"/></property>
+</bean>
+<bean id="runner" class="chap2.BuildRunner">
+   <property name="path" value="c:/setup/" />
+</bean>
+
+<bean id="write" class="chap2.WriteImpl">
+   <constructor-arg><ref bean="dao" /></constructor-arg>
+</bean>
+<bean id="dao" class="chap2.OracleArticleDao" /><!-- ArticleDao로 형변환 필요 -->
+</beans>
